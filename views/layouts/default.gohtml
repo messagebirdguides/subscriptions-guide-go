@@ -1,0 +1,19 @@
+{{ define "default" }}
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MessageBird Verify Example</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="" type="text/css"/>
+  </head>
+  <body>
+    <main>
+    <h1>Bulk SMS Notifications</h1>
+    {{ template "yield" . }}
+    <p><small>A sample application brought to you by <a href="https://developers.messagebird.com/">MessageBird</a> :)</small></p>
+    </main>
+  </body>
+</html>
+{{ end }}

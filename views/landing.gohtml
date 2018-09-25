@@ -1,0 +1,19 @@
+{{ define "yield" }}
+<p>Send a message to all {{ if .SubscriberCount }}{{ .SubscriberCount }}{{ else }}0{{ end }} campaign subscribers who have opted in to receive marketing:</p>
+<div>
+  {{ if .Message }}
+  <p><strong>{{ .Message }}</strong></p>
+  {{ end }}
+  <form action="/" method="post">
+      <div>
+
+          <label>Message:</label>
+          <br />
+          <textarea name="message" cols="63" rows="4" value="{{ if .Message }}{{ .Message }}{{ end }}" placeholder="Enter a message to send." maxlength="160" required></textarea> (max. 160 characters)
+      </div>
+      <div>
+          <button type="submit">Send to all subscribers</button>
+      </div>        
+  </form>
+</div>
+{{ end }}
