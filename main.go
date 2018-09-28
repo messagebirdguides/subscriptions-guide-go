@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"errors"
 	"fmt"
 	"html/template"
 	"log"
@@ -74,7 +75,14 @@ func (app *appContext) sendSMS(msgBody string, originator string, recipients []s
 	client := messagebird.New("<enter-your-api-key>")
 	msg, err := sms.Create(client, originator, recipients, msgBody, nil)
 	if err != nil {
-		return err
+		var mbErrors []string
+		switch errResp := err.(type) {
+		case messagebird.ErrorResponse:
+			for _, mbError := range errResp.Errors {
+				mbErrors = append(mbErrors, fmt.Sprint(mbError))
+			}
+		}
+		return errors.New(fmt.Sprint(mbErrors[:]))
 	}
 	log.Println(msg)
 	return nil
